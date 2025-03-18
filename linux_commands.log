@@ -1,0 +1,159 @@
+
+
+ubuntu
+----------
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt list --upgradable
+sudo apt install net-tools - install this if ifconfig is not working
+sudo apt install openssh-server - if is inactive
+sudo apt install bzip2 tar
+
+
+root password reset 
+---------------
+sudo passwd root
+
+cd /etc/ssh/- enable ssh - 
+
+sudo systemctl status ssh
+sudo systemctl start ssh
+sudo systemctl enable ssh
+systemctl reload ssh
+
+right cntr + c
+
+check IP -
+-------
+ip add
+ifconfig -as
+hostname -I
+ip a
+
+rght ctl + c - for resize window
+
+ufw status verbose - firewall chck 
+
+cd ~ - go to home directory
+
+links -
+=======
+
+1. symbolic link - soft link  - This is similar to shortcut folder in windows.  Just creating a shortcut link to the source file. If original source file get deleted then shortcut will be invalid.  inode will be different for both the files. update can be done from source file only. one directional
+
+ ls -s sourefile  shortcut destination
+ls -s ~/Document/sample.txt ~/backup/samplesoftlink.txt
+ls -sf - force full create if already soft link file is exist 
+cat ~/backup/sampleoflink.txt	
+ls -li - show inode of the file
+
+2. Hard links -
+Just a replica or mirror image.  hard link will create a backup image in the target location will be remain after the original file deleted.
+inodes are same since both are sharing the same file data.  update can be done from both files and can be see in other.  bi-directional modification.
+
+ls sourcelocation/file targetlocation/file
+ls ~/Document/example_hardlink.txt ~/backup/example_hardlink.txt
+ls -f - force full create if already hard link file is exist
+cat ~/backup/example_hardlink.txt
+ls li - to show the inode 
+
+08-Mar
+------
+
+-i- interactive mode - 
+========================
+This command will use to prevent accidental operation.  whenever the command executed with -i- with prompt the action  again to get the confirmation example - remove files
+
+vboxuser@ubuntudestop:~$ touch ~/Documents/start.txt
+vboxuser@ubuntudestop:~$ rm -i ~/Documents/start.txt
+rm: remove regular empty file '/home/vboxuser/Documents/start.txt'? y
+
+-r - recursive mode
+===================
+This command will use to delete the sub folders and files inside the directory when the command executed for delete the whole directory
+
+vboxuser@ubuntudestop:~$ mkdir ~/Documents/starup           --      vboxuser@ubuntudestop:~$ cd ~/Documents/starup
+vboxuser@ubuntudestop:~/Documents/starup$ touch file1 file2   --       vboxuser@ubuntudestop:~/Documents/starup$ ls
+file1  file2
+vboxuser@ubuntudestop:~$ rm ~/Documents/starup/
+rm: cannot remove '/home/vboxuser/Documents/starup/': Is a directory
+vboxuser@ubuntudestop:~$ rm -r ~/Documents/starup/
+
+view command: more - one portion of the log, cat - show full log, less-using arrow can navigate up and down, head, tail, nl - show log with line number, vi-editor
+
+file command : used to show the type of file
+vboxuser@ubuntudestop:~/Documents$ file new_sample.txt
+new_sample.txt: ASCII text
+
+Find 
+------
+find /home/vboxuser -name "file1" - with only file name 
+  find /home/vboxuser -name "*.txt" - with only extension
+find /home/vboxuser -type d -  find directories
+find /home/vboxuser -type f - find files
+find /home/vboxuser -mtime -1 - modification time 1 for 1 day
+find /home/vboxuser -mtime +30 - modified before 30 days
+
+locate - its working with the internal db
+-----------------
+ locate file1
+ sudo updated - find locate will work or not in ubuntu
+ sudo apt install plocate - installing package for locate
+
+which   - to show from which path the binary file is exists
+------
+vboxuser@ubuntudestop:~$ which cat
+/usr/bin/cat
+vboxuser@ubuntudestop:~$ which ls
+/usr/bin/ls
+
+whereis - to show the binary file path and other source file with man help page 
+vboxuser@ubuntudestop:~$ whereis ls
+ls: /usr/bin/ls /usr/share/man/man1/ls.1.gz
+vboxuser@ubuntudestop:~$ whereis cat
+cat: /usr/bin/cat /usr/share/man/man1/cat.1.gz
+
+10-mar
+=====
+
+find search
+============
+To find a specific word in the file in particular location:
+ 
+main command(find)-location(~)-filetype-f(file) second command-exec(grep)- l- listpath "word" {}-place holder - \; command closing 
+find ~ -type f  -exec grep -l "prem" {} \; 
+
+file permission:
+
+vboxuser@ubuntudestop:~/Documents$ chmod u-r file1
+--w-rw-r-- 1 vboxuser vboxuser 34 Mar 10 02:35 file1
+vboxuser@ubuntudestop:~/Documents$ chmod u+r file1
+-rw-rw-r-- 1 vboxuser vboxuser 34 Mar 10 02:35 file1
+vboxuser@ubuntudestop:~/Documents$ chmod u-w file1
+-r--rw-r-- 1 vboxuser vboxuser 34 Mar 10 02:35 file1
+vboxuser@ubuntudestop:~/Documents$ chmod o+w file1
+-r--rw-rw- 1 vboxuser vboxuser 34 Mar 10 02:35 file1
+vboxuser@ubuntudestop:~/Documents$ chmod g+x file1
+-r--rwxrw- 1 vboxuser vboxuser 34 Mar 10 02:35 file1
+
+
+11-mar
+------
+user creation
+set bash terminal program 
+
+tar 
+-c - create archive file
+-z - gzip
+-v - verbose file
+f - new file name
+
+
+
+
+
+
+
+
+
+
