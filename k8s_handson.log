@@ -1,0 +1,74 @@
+day 01 - 19-mar-2025
+============================= 
+-need to understand the difference docker swarm vs k8s
+-docker swarm is used before k8s
+-containerised apps are cannot be used docker swarm 
+-k8s can run any conatainer run time,docker etc
+-overlay network is possible is k8s
+-Doc-swarm building DNS servers
+-k8s uses kube-dns
+-k8s has bigger community and support level
+-k8s has better features - automatic role back, scalling, HPA(horizontal pod autoscaling), VPA(virtual pod autoscaling), CAS(cluster auto scaling), 
+ self healing (auto-restart, auto-replacement)
+-google developed k8s - open cnf network 
+
+Objective of k8s
+-----------------
+-rest API - communications are happeing by restAPI
+-portable in nature - can be install baremetal server install anywhare and use as a service 
+-cluster - group of nodes
+--------------------
+
+k8s client server arch
+---------------------
+
+-master (control plane) -- worker (data plane) 
+- kubeadm & kops on baremetal server we have to maintain and responsible  the master and client servers 
+- if any upgrades or changes we have to upgrade both master and client otherwise we will be in trouble 
+
+- to avoid this use multiple master node 
+
+-EKS,AKS,GKE,ALIBABA COUD,DIGITAL OCEAN,IBM CLOUD, ORACLE CONTAINER - we can only manage worker node. cloud provider will take of server plane
+
+------------------------------------------
+competitors --  openshift, salt, docker swarm etc
+
+architecture
+----------------------------------------------
+-control plane  - 5 components
+- data plane - 2 major comp and few add on
+
+control plane components :
+
+-kubeAPI server (brain)- all executed commands are goes to this comp.  managing all REST calls and will give direction to all requests
+
+-etcd  - database of k8s. key value pair - maintain the data like - number of pods, so far created, status, name space, all modifications - should need a backup 
+
+-kube control manager -  run all type of controllers ex : replication controller which is responsible for create replicas
+
+-scheduler - will match desire state with current state whether same or not.  if any changes scheduler will intimate the control manager and raise the new pods, memory and ram management 
+
+-cloud controller manager - will talk to cloud providers
+
+-worker plane comp.
+------
+
+kubelet - help to talk only to kube api server from worker plane, help to check the health status of the pod to kube api server  
+
+kubeproxy(optional) - help to give the proxy is to expose the particular pod to public
+
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+
