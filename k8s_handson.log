@@ -57,18 +57,5 @@ kubelet - help to talk only to kube api server from worker plane, help to check 
 
 kubeproxy(optional) - help to give the proxy is to expose the particular pod to public
 
-B
-B
-B
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
-A
+
 
